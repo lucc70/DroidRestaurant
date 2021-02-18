@@ -45,6 +45,7 @@ class CategoryListAdapter(private val foods : List<FoodJSON>) : RecyclerView.Ada
             firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
                 param(FirebaseAnalytics.Param.ITEM_NAME, food.name_fr)
                 param("ITEM_PRICES",food.prices[0].price.toString())
+                param("ITEM_TYPE",food.categ_name_fr)
             }
         }
         if(food.images.size > 0 && food.images[0].isNotBlank())

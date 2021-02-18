@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import fr.isen.kyllian.androidrestaurant.adapters.DetailViewAdapter
 import fr.isen.kyllian.androidrestaurant.databinding.ActivityItemBinding
@@ -12,6 +16,7 @@ import fr.isen.kyllian.androidrestaurant.service.cartService
 import fr.isen.kyllian.androidrestaurant.service.foodService
 
 private lateinit var binding: ActivityItemBinding;
+private lateinit var firebaseAnalytics: FirebaseAnalytics
 
 class ItemActivity : AppCompatActivityWMenuBar() {
     private lateinit var item : FoodJSON
@@ -19,6 +24,7 @@ class ItemActivity : AppCompatActivityWMenuBar() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityItemBinding.inflate(layoutInflater)
+        firebaseAnalytics = Firebase.analytics
         item = foodService.getFoodById(intent.getIntExtra(("id"),-1))
 
         binding.itemName.text = item.name_fr
@@ -38,6 +44,13 @@ class ItemActivity : AppCompatActivityWMenuBar() {
                 Log.i("logs", "added $nb of ${item.name_fr} to cart, cart total is now ${cartService.getFullPrice()} euros")
                 refreshCart()
                 setQttMessage()
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+                    param(FirebaseAnalytics.Param.ITEM_NAME,item.name_fr)
+                    param("ITEM_COUNT",nb.toString())
+                    param("ITEM_TYPE",item.categ_name_fr)
+                    param("ITEM_PRICE",item.prices[0].price.toString())
+                    param("ITEM_TTPRICE",binding.totalsum.toString())
+                }
             }
         }
         setQttMessage()
