@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.HomeActivity">
+
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="45dp"
+        android:layout_height="24dp"
+        android:text="chez"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.202" />
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="88dp"
+        android:layout_height="25dp"
+        android:text="Bienvenue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.167" />
+
+    <ImageView
+        android:id="@+id/img_chef"
+        android:layout_width="133dp"
+        android:layout_height="172dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/capture_d_cran_2021_01_25_085928"
+        app:layout_constraintBottom_toTopOf="@+id/btn_entree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_entree"
+        android:layout_width="202dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="56dp"
+        android:text="Entrées"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_chef" />
+
+    <Button
+        android:id="@+id/btn_plat"
+        android:layout_width="202dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="28dp"
+        android:text="Plats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_entree" />
+
+    <Button
+        android:id="@+id/btn_dessert"
+        android:layout_width="202dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="26dp"
+        android:text="Desserts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_plat" />
+
+    <ImageView
+        android:id="@+id/img_title"
+        android:layout_width="214dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/capture_d_cran_2021_01_25_091125droidresto"
+        app:layout_constraintEnd_toStartOf="@+id/img_chef"
+        app:layout_constraintTop_toBottomOf="@+id/title1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.isen.kyllian.androidrestaurant">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AndroidERestaurant"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.CartActivity"></activity>
+        <activity android:name=".activity.ItemActivity" />
+        <activity android:name=".activity.MenuListActivity" />
+        <activity android:name=".DessertActivity" />
+        <activity android:name=".PlatActivity" />
+        <activity android:name=".EntreeActivity" />
+        <activity android:name=".activity.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
