@@ -49,7 +49,7 @@ class ItemActivity : AppCompatActivityWMenuBar() {
                     param("ITEM_COUNT",nb.toString())
                     param("ITEM_TYPE",item.categ_name_fr)
                     param("ITEM_PRICE",item.prices[0].price.toString())
-                    param("ITEM_TTPRICE",binding.totalsum.toString())
+                    param("ITEM_TTPRICE","${item.prices[0].price*nb}")
                 }
             }
         }
