@@ -39,6 +39,7 @@ class HomeActivity : AppCompatActivityWMenuBar() {
             val intent = Intent(this,activity_class)
             intent.putExtra("category",btn.text)
             startActivity(intent)
+            throw RuntimeException("Test Crash")
         }
         return btn;
     }
