@@ -5,6 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import fr.isen.kyllian.androidrestaurant.activity.ItemActivity
 import fr.isen.kyllian.androidrestaurant.databinding.CategoryCellBinding
@@ -13,10 +17,12 @@ import fr.isen.kyllian.androidrestaurant.service.cartService
 
 class CategoryListAdapter(private val foods : List<FoodJSON>) : RecyclerView.Adapter<CategoryListAdapter.CategoryHolder>() {
     private var context : Context? = null
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
+
     ):CategoryHolder {
         this.context = parent.context;
         val itemBinding = CategoryCellBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -27,12 +33,19 @@ class CategoryListAdapter(private val foods : List<FoodJSON>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
         val food = foods[position]
+        firebaseAnalytics = Firebase.analytics
+
         holder.title.text = food.name_fr
         holder.prix.text = "${food.prices[0].price} €"
         holder.image.setOnClickListener {
             val intent = Intent(context, ItemActivity::class.java)
             intent.putExtra("id",foods[position].id)
             context?.startActivity(intent)
+
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+                param(FirebaseAnalytics.Param.ITEM_NAME, food.name_fr)
+                param("ITEM_PRICES",food.prices[0].price.toString())
+            }
         }
         if(food.images.size > 0 && food.images[0].isNotBlank())
             Picasso.get().load(food.images[0]).into(holder.image)

@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import fr.isen.kyllian.androidrestaurant.databinding.ActivityHomeBinding
 import fr.isen.kyllian.androidrestaurant.service.FoodService
 import fr.isen.kyllian.androidrestaurant.service.cartService
@@ -11,17 +15,20 @@ import fr.isen.kyllian.androidrestaurant.service.foodService
 import java.io.File
 
 private lateinit var binding: ActivityHomeBinding
+private lateinit var firebaseAnalytics: FirebaseAnalytics
 
-class HomeActivity : AppCompatActivityWMenuBar() {
+class HomeActivity() : AppCompatActivityWMenuBar() {
 
     private lateinit var btnEntree : android.widget.Button;
     private lateinit var btnPlat : android.widget.Button;
     private lateinit var btnDessert : android.widget.Button;
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
+        firebaseAnalytics = Firebase.analytics
 
         btnEntree  = initMenuButton(binding.btnEntree );
         btnPlat    = initMenuButton(binding.btnPlat   );
@@ -39,7 +46,11 @@ class HomeActivity : AppCompatActivityWMenuBar() {
             val intent = Intent(this,activity_class)
             intent.putExtra("category",btn.text)
             startActivity(intent)
-            throw RuntimeException("Test Crash")
+
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+                param(FirebaseAnalytics.Param.ITEM_ID, btn.id.toString())
+                param(FirebaseAnalytics.Param.ITEM_NAME,btn.text.toString())
+            }
         }
         return btn;
     }
