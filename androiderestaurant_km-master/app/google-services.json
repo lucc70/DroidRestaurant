@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024481746799",
+    "project_id": "droidrestaurant-fc5dd",
+    "storage_bucket": "droidrestaurant-fc5dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024481746799:android:eb0630c6bc8bc7904a529a",
+        "android_client_info": {
+          "package_name": "fr.isen.kyllian.androidrestaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024481746799-upmaoar5k6ikbjeehhr1th59h8pqheqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA0QU2GMJDl56jT8gxofiBYLB6xqDLLHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024481746799-upmaoar5k6ikbjeehhr1th59h8pqheqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
